@@ -44,7 +44,6 @@ if ($_POST['submit']) {
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
 
-        
         die();
     }
 }
