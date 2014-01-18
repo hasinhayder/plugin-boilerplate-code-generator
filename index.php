@@ -34,7 +34,7 @@ if ($_POST['submit']) {
         $newdata = str_replace(" * Author:            @TODO", " * Author:       {$_POST['author-name']}", $newdata);
         $newdata = str_replace(" * Author URI:        @TODO", " * Author URI:       {$_POST['author-uri']}", $newdata);
         $newdata = str_replace(" * @author    Your Name <email@example.com>", "* @author    {$_POST['author-name']} <{$_POST['author-email']}>", $newdata);
-        $newdata = str_replace(" * Text Domain:       {$pluginName}-locale", " * Text Domain:       {$_POST['plugin-name']}", $newdata);
+        $newdata = str_replace(" * Text Domain:       {$pluginName}-locale", " * Text Domain:       {$pluginName}", $newdata);
         file_put_contents( "{$newAbsDir}/plugin-name/{$pluginName}.php", $newdata);
         shell_exec("mv {$newAbsDir}/plugin-name {$newAbsDir}/{$pluginName}");
 
@@ -50,7 +50,7 @@ if ($_POST['submit']) {
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
 
-        
+
         die();
     }
 }
