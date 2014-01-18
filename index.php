@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 if ($_POST['submit']) {
     if ($_POST['plugin-name']) {
         $pluginName = str_replace(" ", "-", strtolower($_POST['plugin-name']));
@@ -13,6 +14,10 @@ if ($_POST['submit']) {
         foreach (glob_recursive( "{$newAbsDir}/plugin-name/*.php") as $phpfile) {
             $filedata = file_get_contents($phpfile);
             $newdata = str_replace("Plugin_Name", str_replace(" ","_",$_POST['plugin-name']), $filedata);
+            $newdata = str_replace(" * @author    Your Name <email@example.com>", " * @author    {$_POST['author-name']} <{$_POST['author-email']}>", $newdata);
+            $newdata = str_replace(" * @link      http://example.com", " * @link      {$_POST['author-uri']}", $newdata);
+            $newdata = str_replace(" * @copyright 2014 Your Name or Company Name", " * @copyright 2014 {$_POST['author-name']}", $newdata);
+
             $newdata = str_replace("plugin-name", $pluginName, $newdata);
             file_put_contents($phpfile, $newdata);
         }
@@ -29,6 +34,7 @@ if ($_POST['submit']) {
         $newdata = str_replace(" * Author:            @TODO", " * Author:       {$_POST['author-name']}", $newdata);
         $newdata = str_replace(" * Author URI:        @TODO", " * Author URI:       {$_POST['author-uri']}", $newdata);
         $newdata = str_replace(" * @author    Your Name <email@example.com>", "* @author    {$_POST['author-name']} <{$_POST['author-email']}>", $newdata);
+        $newdata = str_replace(" * Text Domain:       {$pluginName}-locale", " * Text Domain:       {$_POST['plugin-name']}", $newdata);
         file_put_contents( "{$newAbsDir}/plugin-name/{$pluginName}.php", $newdata);
         shell_exec("mv {$newAbsDir}/plugin-name {$newAbsDir}/{$pluginName}");
 
@@ -44,15 +50,19 @@ if ($_POST['submit']) {
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
 
+        
         die();
     }
 }
 
-function glob_recursive($pattern, $flags = 0){
+function glob_recursive($pattern, $flags = 0)
+{
     $files = glob($pattern, $flags);
+
     foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
         $files = array_merge($files, glob_recursive($dir . '/' . basename($pattern), $flags));
     }
+
     return $files;
 }
 
