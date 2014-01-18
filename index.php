@@ -43,7 +43,7 @@ if ($_POST['submit']) {
         ob_end_clean();
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
-        
+
         die();
     }
 }
@@ -90,7 +90,8 @@ function glob_recursive($pattern, $flags = 0){
                     This is a plugin boilerplate code generator from Tom Mcfarlin's <a target="_blank"
                                                                                        href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate">Wordpress
                         Plugin Boilerplate v 2.6.1</a>. The local repository is continuously updated to the latest
-                    version.
+                    version. Source code of this code generator is available at <a
+                        href="https://github.com/hasinhayder/plugin-boilerplate-code-generator/blob/master/index.php" target="_blank">Github</a>.
                 </p>
             </div>
         </div>
