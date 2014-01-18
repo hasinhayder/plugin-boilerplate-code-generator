@@ -44,6 +44,7 @@ if ($_POST['submit']) {
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
 
+        
         die();
     }
 }
@@ -59,6 +60,7 @@ function glob_recursive($pattern, $flags = 0){
 ?>
 <html>
 <head>
+    <title>Personalized Plugin Generator from Tom Mcfarlin's Plugin Boilerplate</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
     <style type="text/css">
         .jumbotron {
@@ -91,7 +93,7 @@ function glob_recursive($pattern, $flags = 0){
                                                                                        href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate">Wordpress
                         Plugin Boilerplate v 2.6.1</a>. The local repository is continuously updated to the latest
                     version. Source code of this code generator is available in <a
-                        href="https://github.com/hasinhayder/plugin-boilerplate-code-generator/blob/master/index.php" target="_blank">Github</a>.
+                        href="https://github.com/hasinhayder/plugin-boilerplate-code-generator" target="_blank">Github</a>.
                 </p>
             </div>
         </div>
