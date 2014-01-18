@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL);
 if ($_POST['submit']) {
     if ($_POST['plugin-name']) {
         $pluginName = str_replace(" ", "-", strtolower($_POST['plugin-name']));
@@ -44,7 +43,7 @@ if ($_POST['submit']) {
         ob_end_clean();
         readfile($tarBall);
         shell_exec("rm -fr {$newAbsDir}");
-
+        
         die();
     }
 }
