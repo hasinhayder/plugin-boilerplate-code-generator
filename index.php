@@ -90,7 +90,7 @@ function glob_recursive($pattern, $flags = 0){
                     This is a plugin boilerplate code generator from Tom Mcfarlin's <a target="_blank"
                                                                                        href="https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate">Wordpress
                         Plugin Boilerplate v 2.6.1</a>. The local repository is continuously updated to the latest
-                    version. Source code of this code generator is available at <a
+                    version. Source code of this code generator is available in <a
                         href="https://github.com/hasinhayder/plugin-boilerplate-code-generator/blob/master/index.php" target="_blank">Github</a>.
                 </p>
             </div>
