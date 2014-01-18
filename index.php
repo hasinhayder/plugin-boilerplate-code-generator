@@ -10,6 +10,10 @@ if ($_POST['submit']) {
         shell_exec("cp -r {$root}/plugin-name {$newAbsDir}");
         shell_exec("chmod -R 0777 {$newAbsDir}");
 
+        rename( "{$newAbsDir}/plugin-name/plugin-name.php", "{$newAbsDir}/plugin-name/{$pluginName}.php");
+        rename( "{$newAbsDir}/plugin-name/admin/class-plugin-name-admin.php", "{$newAbsDir}/plugin-name/admin/class-{$pluginName}-admin.php");
+        rename( "{$newAbsDir}/plugin-name/public/class-plugin-name.php",  "{$newAbsDir}/plugin-name/public/class-{$pluginName}.php");
+
         $plugindetails = file_get_contents("{$newAbsDir}/plugin-name/{$pluginName}.php");
         $newdata = str_replace(" * Plugin Name:       @TODO", " * Plugin Name:       {$_POST['plugin-name']}", $plugindetails);
         $newdata = str_replace(" * Plugin URI:        @TODO", " * Plugin URI:        {$_POST['plugin-uri']}", $newdata);
@@ -26,12 +30,9 @@ if ($_POST['submit']) {
             $newdata = str_replace(" * @author    Your Name <email@example.com>", " * @author    {$_POST['author-name']} <{$_POST['author-email']}>", $newdata);
             $newdata = str_replace(" * @link      http://example.com", " * @link      {$_POST['author-uri']}", $newdata);
             $newdata = str_replace(" * @copyright 2014 Your Name or Company Name", " * @copyright 2014 {$_POST['author-name']}", $newdata);
+            $newdata = str_replace(" * @author  Your Name <email@example.com>", " * @author  {$_POST['author-name']} <{$_POST['author-email']}>", $newdata);
             file_put_contents($phpfile, $newdata);
         }
-
-        rename( "{$newAbsDir}/plugin-name/plugin-name.php", "{$newAbsDir}/plugin-name/{$pluginName}.php");
-        rename( "{$newAbsDir}/plugin-name/admin/class-plugin-name-admin.php", "{$newAbsDir}/plugin-name/admin/class-{$pluginName}-admin.php");
-        rename( "{$newAbsDir}/plugin-name/public/class-plugin-name.php",  "{$newAbsDir}/plugin-name/public/class-{$pluginName}.php");
 
         shell_exec("mv {$newAbsDir}/plugin-name {$newAbsDir}/{$pluginName}");
 
